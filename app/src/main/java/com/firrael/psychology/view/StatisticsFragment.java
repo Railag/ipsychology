@@ -10,10 +10,7 @@ import com.firrael.psychology.model.StatisticsResult;
 import com.firrael.psychology.model.User;
 import com.firrael.psychology.presenter.StatisticsPresenter;
 import com.firrael.psychology.view.adapter.ComplexResultsAdapter;
-import com.firrael.psychology.view.adapter.FocusingResultsAdapter;
 import com.firrael.psychology.view.adapter.ReactionResultsAdapter;
-import com.firrael.psychology.view.adapter.StabilityResultsAdapter;
-import com.firrael.psychology.view.adapter.StressResultsAdapter;
 import com.firrael.psychology.view.adapter.VolumeResultsAdapter;
 import com.firrael.psychology.view.base.BaseFragment;
 
@@ -34,12 +31,6 @@ public class StatisticsFragment extends BaseFragment<StatisticsPresenter> {
     RecyclerView complexResultsList;
     @BindView(R.id.volumeResultsList)
     RecyclerView volumeResultsList;
-    @BindView(R.id.focusingResultsList)
-    RecyclerView focusingResultsList;
-    @BindView(R.id.stabilityResultsList)
-    RecyclerView stabilityResultsList;
-    @BindView(R.id.stressResultsList)
-    RecyclerView stressResultsList;
 
     public static StatisticsFragment newInstance() {
 
@@ -73,15 +64,6 @@ public class StatisticsFragment extends BaseFragment<StatisticsPresenter> {
         LinearLayoutManager volumeManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         volumeResultsList.setLayoutManager(volumeManager);
 
-        LinearLayoutManager focusingManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        focusingResultsList.setLayoutManager(focusingManager);
-
-        LinearLayoutManager stabilityManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        stabilityResultsList.setLayoutManager(stabilityManager);
-
-        LinearLayoutManager stressManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        stressResultsList.setLayoutManager(stressManager);
-
         fetchData();
     }
 
@@ -93,10 +75,7 @@ public class StatisticsFragment extends BaseFragment<StatisticsPresenter> {
     private StatisticsResult sortResults(StatisticsResult result) {
         Collections.sort(result.volumeResults);
         Collections.sort(result.complexResults);
-        Collections.sort(result.focusingResults);
         Collections.sort(result.reactionResults);
-        Collections.sort(result.stressResults);
-        Collections.sort(result.stabilityResults);
         return result;
     }
 
@@ -109,21 +88,9 @@ public class StatisticsFragment extends BaseFragment<StatisticsPresenter> {
         complexAdapter.setAllResults(result.complexResults);
         complexResultsList.setAdapter(complexAdapter);
 
-        FocusingResultsAdapter focusingAdapter = new FocusingResultsAdapter();
-        focusingAdapter.setAllResults(result.focusingResults);
-        focusingResultsList.setAdapter(focusingAdapter);
-
         ReactionResultsAdapter reactionAdapter = new ReactionResultsAdapter();
         reactionAdapter.setAllResults(result.reactionResults);
         reactionResultsList.setAdapter(reactionAdapter);
-
-        StressResultsAdapter stressAdapter = new StressResultsAdapter();
-        stressAdapter.setAllResults(result.stressResults);
-        stressResultsList.setAdapter(stressAdapter);
-
-        StabilityResultsAdapter stabilityAdapter = new StabilityResultsAdapter();
-        stabilityAdapter.setAllResults(result.stabilityResults);
-        stabilityResultsList.setAdapter(stabilityAdapter);
     }
 
     public void onSuccess(StatisticsResult result) {

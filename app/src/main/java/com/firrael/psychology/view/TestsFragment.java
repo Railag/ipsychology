@@ -34,45 +34,18 @@ public class TestsFragment extends BaseFragment<TestsFragmentPresenter> {
         return R.layout.fragment_tests;
     }
 
-    @OnClick(R.id.memory)
+    @OnClick(R.id.volume)
     public void toMemory() {
         getMainActivity().toInstructionFragment(InstructionFragment.Test.ATTENTION_VOLUME);
     }
 
-    @OnClick(R.id.attention)
+    @OnClick(R.id.complex)
     public void toAttention() {
-        getMainActivity().toInstructionFragment(InstructionFragment.Test.FOCUSING);
-    }
-
-    @OnClick(R.id.perception)
-    public void toPerception() {
-        getMainActivity().toInstructionFragment(InstructionFragment.Test.ATTENTION_STABILITY);
+        getMainActivity().toInstructionFragment(InstructionFragment.Test.COMPLEX_MOTOR_REACTION);
     }
 
     @OnClick(R.id.reaction)
     public void toReaction() {
         getMainActivity().toInstructionFragment(InstructionFragment.Test.REACTION);
     }
-
-   /* public void onSuccess(UserResult result) {
-        stopLoading();
-        if (result == null) {
-            onError(new IllegalArgumentException());
-            return;
-        }
-        if (result.invalid()) {
-            toast(result.error);
-            return;
-        }
-        toast("success login");
-        User.save(result, getActivity());
-        getMainActivity().updateNavigationMenu();
-        getMainActivity().toTests();
-    }
-
-    public void onError(Throwable error) {
-        error.printStackTrace();
-        stopLoading();
-        toast(error.getMessage());
-    }*/
 }

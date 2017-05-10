@@ -44,18 +44,6 @@ public interface RConnectorService {
     Observable<Result> sendReactionResults(@Field("user_id") long userId, @Field("times[]") ArrayList<Double> times);
 
     @FormUrlEncoded
-    @POST("/user/results_stress")
-    Observable<Result> sendStressResults(@Field("user_id") long userId, @Field("times[]") ArrayList<Double> times, @Field("misses") long misses);
-
-    @FormUrlEncoded
-    @POST("/user/results_focusing")
-    Observable<Result> sendFocusingResults(@Field("user_id") long userId, @Field("times[]") ArrayList<Double> times, @Field("error_values[]") ArrayList<Long> errors);
-
-    @FormUrlEncoded
-    @POST("/user/results_stability")
-    Observable<Result> sendAttentionStabilityResults(@Field("user_id") long userId, @Field("times[]") ArrayList<Double> times, @Field("misses") long misses, @Field("errors_value") long errors);
-
-    @FormUrlEncoded
     @POST("/user/results_complex")
     Observable<Result> sendComplexMotorReactionResults(@Field("user_id") long userId, @Field("wins") long wins, @Field("fails") long fails, @Field("misses") long misses);
 
@@ -66,62 +54,4 @@ public interface RConnectorService {
     @FormUrlEncoded
     @POST("/user/statistics")
     Observable<StatisticsResult> fetchStatistics(@Field("user_id") long userId);
-
-/*
-    @POST("/user/load_user_photo")
-    Observable<ImageResult> loadImage();
-
-    @FormUrlEncoded
-    @POST("/user/save_user_photo")
-    Observable<ImageResult> saveImage(@Field("image") Bitmap imageBitmap);
-
-    @FormUrlEncoded
-    @POST("/group")
-    Observable<CreateGroupResult> createGroup(@Field("title") String groupName, @Field("user_id") long creatorId);
-
-    @FormUrlEncoded
-    @POST("/group/fetch")
-    Observable<GroupFetchResult> getGroups(@Field("user_id") long creatorId);
-
-    @FormUrlEncoded
-    @POST("/group/send_message")
-    Observable<SendMessageResult> sendMessage(@Field("group_id") long groupId, @Field("user_id") long userId, @Field("text") String message);
-
-    @FormUrlEncoded
-    @POST("/group/fetch_messages")
-    Observable<List<Message>> fetchMessages(@Field("group_id") long groupId);
-
-    @FormUrlEncoded
-    @POST("/group/add_invite_user")
-    Observable<AddInviteUserResult> addInviteUser(@Field("user_login_or_email") String loginOrEmail, @Field("group_id") long groupId);
-
-    @FormUrlEncoded
-    @POST("/group/add_user")
-    Observable<AddUserResult> addUser(@Field("user_id") long userId, @Field("group_id") long groupId);
-
-    @FormUrlEncoded
-    @POST("/group/remove_user")
-    Observable<RemoveUserResult> removeUser(@Field("login") String removeLogin, @Field("group_id") long groupId);
-
-    @FormUrlEncoded
-    @POST("/group/fetch_users")
-    Observable<List<ChatUser>> fetchUsers(@Field("group_id") long groupId);
-
-
-    // TODO for testing
-    @FormUrlEncoded
-    @POST("/user/send_pns_to_everyone")
-    Observable<SendPNResult> sendPNToEveryone(@Field("user_id") long userId, @Field("title") String title, @Field("text") String text);
-
-    @FormUrlEncoded
-    @POST("/user/send_pns_to_group")
-    Observable<SendPNResult> sendPNToGroup(@Field("group_id") long groupId, @Field("title") String title, @Field("text") String text);
-
-    @FormUrlEncoded
-    @POST("/group/start_call")
-    Observable<StartCallResult> startCall(@Field("user_id") long userId);
-
-    @FormUrlEncoded
-    @POST("/group/invite_to_call")
-    Observable<InviteToCallResult> inviteToCall(@Field("user_id") long userId, @Field("socket_address") String socketAddress, @Field("call_id") String callId);*/
 }

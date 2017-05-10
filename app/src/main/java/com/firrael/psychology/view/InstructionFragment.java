@@ -19,11 +19,8 @@ public class InstructionFragment extends SimpleFragment {
     private final static String TYPE = "type";
 
     public enum Test {
-        FOCUSING,
         REACTION,
-        ATTENTION_STABILITY,
         ATTENTION_VOLUME,
-        STRESS_RESISTANCE,
         COMPLEX_MOTOR_REACTION
     }
 
@@ -61,20 +58,11 @@ public class InstructionFragment extends SimpleFragment {
             String instruction = "";
 
             switch (test) {
-                case FOCUSING:
-                    instruction = getString(R.string.instruction_focusing);
-                    break;
                 case REACTION:
                     instruction = getString(R.string.instruction_reaction);
                     break;
-                case ATTENTION_STABILITY:
-                    instruction = getString(R.string.instruction_attention_stability);
-                    break;
                 case ATTENTION_VOLUME:
                     instruction = getString(R.string.instruction_attention_volume);
-                    break;
-                case STRESS_RESISTANCE:
-                    instruction = getString(R.string.instruction_stress_resistance);
                     break;
                 case COMPLEX_MOTOR_REACTION:
                     instruction = getString(R.string.instruction_complex_motor_reaction);
@@ -88,20 +76,11 @@ public class InstructionFragment extends SimpleFragment {
     @OnClick(R.id.start)
     public void start() {
         switch (test) {
-            case FOCUSING:
-                getMainActivity().toFocusingTest();
-                break;
             case REACTION:
                 getMainActivity().toReactionTest();
                 break;
-            case ATTENTION_STABILITY:
-                getMainActivity().toAttentionStabilityTest();
-                break;
             case ATTENTION_VOLUME:
                 getMainActivity().toAttentionVolumeTest();
-                break;
-            case STRESS_RESISTANCE:
-                getMainActivity().toStressResistanceTest();
                 break;
             case COMPLEX_MOTOR_REACTION:
                 getMainActivity().toComplexMotorReactionTest();
