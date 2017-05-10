@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/whiteTestBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray">
+
+    <TextView
+        android:id="@+id/whiteTestText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/reactionWhiteText"
+        android:textColor="@android:color/white"
+        android:padding="5dp" />
+
+    <LinearLayout
+        android:id="@+id/reactNumberLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/whiteTestText"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/currentReactNumber" />
+
+        <TextView
+            android:id="@+id/current"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
