@@ -5,15 +5,10 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 
 import com.firrael.psychology.App;
 import com.firrael.psychology.R;
-import com.firrael.psychology.RConnectorService;
-import com.firrael.psychology.model.Result;
-import com.firrael.psychology.model.User;
 import com.firrael.psychology.presenter.MainPresenter;
 import com.firrael.psychology.view.results.AttentionVolumeResultsFragment;
 import com.firrael.psychology.view.results.ComplexMotorReactionResultsFragment;
@@ -29,13 +24,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import nucleus.factory.RequiresPresenter;
 import nucleus.view.NucleusAppCompatActivity;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 @RequiresPresenter(MainPresenter.class)
 public class MainActivity extends NucleusAppCompatActivity<MainPresenter> {
-
-    private final static String TAG = MainActivity.class.getSimpleName();
 
     private static final String TAG_MAIN = "mainTag";
 
@@ -157,7 +148,6 @@ public class MainActivity extends NucleusAppCompatActivity<MainPresenter> {
         setFragment(AttentionVolumeTestFragment.newInstance());
     }
 
-
     public void toReactionTest() {
         setFragment(ReactionTestFragment.newInstance());
     }
@@ -177,20 +167,4 @@ public class MainActivity extends NucleusAppCompatActivity<MainPresenter> {
     public void toComplexMotorReactionResults(Bundle args) {
         setFragment(ComplexMotorReactionResultsFragment.newInstance(args));
     }
-
-    public void onFcmTokenSuccess(Result result) {
-        if (result.invalid()) {
-            Log.e(TAG, result.error);
-            return;
-        }
-
-        Log.i(TAG, result.result);
-
-        User.fcmSaved(getBaseContext());
-    }
-
-    public void onFcmTokenError(Throwable throwable) {
-        throwable.printStackTrace();
-    }
-
 }

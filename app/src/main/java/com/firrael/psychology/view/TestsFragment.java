@@ -48,4 +48,5 @@ public class TestsFragment extends BaseFragment<TestsFragmentPresenter> {
     public void toReaction() {
         getMainActivity().toInstructionFragment(InstructionFragment.Test.REACTION);
     }
+
 }

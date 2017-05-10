@@ -16,8 +16,8 @@ import rx.Observable;
  */
 public interface RConnectorService {
     //String API_ENDPOINT = "http://127.0.0.1:3000";
-    String API_ENDPOINT = "http://10.0.3.2:3000";
-    //String API_ENDPOINT = "https://firrael.herokuapp.com";
+    //String API_ENDPOINT = "http://10.0.3.2:3000";
+    String API_ENDPOINT = "https://firrael.herokuapp.com";
 
     @FormUrlEncoded
     @POST("/user/login")
