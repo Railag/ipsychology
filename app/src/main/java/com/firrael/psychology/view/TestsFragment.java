@@ -35,12 +35,12 @@ public class TestsFragment extends BaseFragment<TestsFragmentPresenter> {
     }
 
     @OnClick(R.id.volume)
-    public void toMemory() {
+    public void toVolume() {
         getMainActivity().toInstructionFragment(InstructionFragment.Test.ATTENTION_VOLUME);
     }
 
     @OnClick(R.id.complex)
-    public void toAttention() {
+    public void toComplex() {
         getMainActivity().toInstructionFragment(InstructionFragment.Test.COMPLEX_MOTOR_REACTION);
     }
 

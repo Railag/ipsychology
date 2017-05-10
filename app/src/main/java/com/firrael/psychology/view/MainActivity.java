@@ -60,6 +60,8 @@ public class MainActivity extends NucleusAppCompatActivity<MainPresenter> {
         App.setMainActivity(this);
 
         analytics = FirebaseAnalytics.getInstance(this);
+
+        toSplash();
     }
 
 
