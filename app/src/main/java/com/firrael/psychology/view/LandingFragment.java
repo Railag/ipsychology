@@ -1,9 +1,9 @@
 package com.firrael.psychology.view;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.firrael.psychology.R;
-import com.firrael.psychology.model.User;
 import com.firrael.psychology.view.base.SimpleFragment;
 
 import butterknife.OnClick;
@@ -33,14 +33,14 @@ public class LandingFragment extends SimpleFragment {
         return R.layout.fragment_landing;
     }
 
+    @Override
+    protected void initView(View v) {
+        getMainActivity().hideToolbar();
+    }
+
     @OnClick(R.id.infoButton)
     public void goToInfo() {
         getMainActivity().toInfo();
-    }
-
-    @OnClick(R.id.testsButton)
-    public void goToTests() {
-        getMainActivity().toTests();
     }
 
     @OnClick(R.id.statisticsButton)
@@ -53,9 +53,33 @@ public class LandingFragment extends SimpleFragment {
         getMainActivity().toSettings();
     }
 
-    @OnClick(R.id.logoutButton)
-    public void logout() {
-        User.logout(getActivity());
-        getMainActivity().toSplash();
+    @OnClick(R.id.infoButton2)
+    public void info() {
+        goToInfo();
+    }
+
+    @OnClick(R.id.statisticsButton2)
+    public void stat() {
+        toStatistics();
+    }
+
+    @OnClick(R.id.settingsButton2)
+    public void settings() {
+        toSettings();
+    }
+
+    @OnClick(R.id.distribution)
+    public void toVolume() {
+        getMainActivity().toInstructionFragment(InstructionFragment.Test.ATTENTION_DISTRIBUTION);
+    }
+
+    @OnClick(R.id.complex)
+    public void toComplex() {
+        getMainActivity().toInstructionFragment(InstructionFragment.Test.COMPLEX_MOTOR_REACTION);
+    }
+
+    @OnClick(R.id.reaction)
+    public void toReaction() {
+        getMainActivity().toInstructionFragment(InstructionFragment.Test.REACTION);
     }
 }

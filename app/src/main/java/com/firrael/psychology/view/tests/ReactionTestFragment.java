@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firrael.psychology.App;
 import com.firrael.psychology.R;
@@ -106,7 +105,7 @@ public class ReactionTestFragment extends BaseFragment<ReactionTestPresenter> {
 
             String diffInSeconds = new DecimalFormat("#.##").format(result);
             String res = diffInSeconds + " секунд";
-            Toast.makeText(getActivity(), res, Toast.LENGTH_SHORT).show();
+            toast(res);
 
             current++;
 
@@ -115,7 +114,7 @@ public class ReactionTestFragment extends BaseFragment<ReactionTestPresenter> {
                 reactNumberLayout.setVisibility(View.VISIBLE);
 
                 currentView.setText(String.valueOf(MAX_COUNT - current));
-                background.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
+                background.setBackgroundColor(getResources().getColor(R.color.purple));
                 time = System.nanoTime();
                 next();
             } else {
@@ -157,7 +156,6 @@ public class ReactionTestFragment extends BaseFragment<ReactionTestPresenter> {
             toast(result.error);
             return;
         }
-        toast("success");
 
         Bundle args = new Bundle();
         args.putSerializable(ReactionResultsFragment.RESULTS, results);

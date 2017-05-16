@@ -1,15 +1,15 @@
 package com.firrael.psychology.view;
 
 import android.os.Bundle;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
 import com.firrael.psychology.R;
-import com.firrael.psychology.Utils;
 import com.firrael.psychology.presenter.NamePresenter;
 import com.firrael.psychology.view.base.BaseFragment;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import nucleus.factory.RequiresPresenter;
 
 /**
@@ -18,11 +18,8 @@ import nucleus.factory.RequiresPresenter;
 @RequiresPresenter(NamePresenter.class)
 public class NameFragment extends BaseFragment<NamePresenter> {
 
-    @BindView(R.id.nameField)
-    EditText nameField;
-
     @BindView(R.id.emailField)
-    EditText emailField;
+    EditText nameField;
 
     @BindView(R.id.passwordField)
     EditText passwordField;
@@ -46,10 +43,20 @@ public class NameFragment extends BaseFragment<NamePresenter> {
         return R.layout.fragment_name;
     }
 
-    @OnClick(R.id.nextButton)
-    public void login() {
-        Utils.hideKeyboard(getActivity());
-        getPresenter().save(nameField.getText().toString(), emailField.getText().toString(), passwordField.getText().toString());
-        getMainActivity().toAgeScreen();
+    @Override
+    protected void initView(View v) {
+        getMainActivity().showToolbar();
+        getMainActivity().toggleArrow(true);
+
+        passwordField.setOnEditorActionListener((textView, actionId, keyEvent) -> {
+            if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                getPresenter().save(nameField.getText().toString(), nameField.getText().toString(), passwordField.getText().toString());
+                getMainActivity().toAgeScreen();
+
+                return true;
+            } else {
+                return false;
+            }
+        });
     }
 }

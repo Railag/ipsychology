@@ -4,13 +4,14 @@ import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Railag on 04.05.2017.
  */
 
-public class StatisticsResult extends Result {
+public class StatisticsResult extends Result implements Serializable {
 
     @SerializedName("reaction_results")
     public List<ReactionResults> reactionResults;
@@ -25,7 +26,7 @@ public class StatisticsResult extends Result {
     @SerializedName("stress_results")
     public List<StressResults> stressResults;
 
-    public static class ReactionResults implements Comparable<ReactionResults> {
+    public static class ReactionResults implements Comparable<ReactionResults>, Serializable {
         @SerializedName("id")
         public int id;
         @SerializedName("times")
@@ -37,7 +38,7 @@ public class StatisticsResult extends Result {
         }
     }
 
-    public static class ComplexResults implements Comparable<ComplexResults> {
+    public static class ComplexResults implements Comparable<ComplexResults>, Serializable {
         @SerializedName("id")
         public int id;
         @SerializedName("wins")
@@ -53,7 +54,7 @@ public class StatisticsResult extends Result {
         }
     }
 
-    public static class VolumeResults implements Comparable<VolumeResults> {
+    public static class VolumeResults implements Comparable<VolumeResults>, Serializable {
         @SerializedName("id")
         public int id;
         @SerializedName("wins")

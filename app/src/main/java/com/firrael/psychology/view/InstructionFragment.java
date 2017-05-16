@@ -1,6 +1,7 @@
 package com.firrael.psychology.view;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,7 +21,7 @@ public class InstructionFragment extends SimpleFragment {
 
     public enum Test {
         REACTION,
-        ATTENTION_VOLUME,
+        ATTENTION_DISTRIBUTION,
         COMPLEX_MOTOR_REACTION
     }
 
@@ -51,6 +52,9 @@ public class InstructionFragment extends SimpleFragment {
 
     @Override
     protected void initView(View v) {
+        getMainActivity().showToolbar();
+        getMainActivity().toggleArrow(true);
+
         Bundle args = getArguments();
         if (args != null && args.containsKey(TYPE)) {
             test = (Test) args.getSerializable(TYPE);
@@ -61,7 +65,7 @@ public class InstructionFragment extends SimpleFragment {
                 case REACTION:
                     instruction = getString(R.string.instruction_reaction);
                     break;
-                case ATTENTION_VOLUME:
+                case ATTENTION_DISTRIBUTION:
                     instruction = getString(R.string.instruction_attention_volume);
                     break;
                 case COMPLEX_MOTOR_REACTION:
@@ -69,7 +73,7 @@ public class InstructionFragment extends SimpleFragment {
                     break;
             }
 
-            instructionText.setText(instruction);
+            instructionText.setText(Html.fromHtml(instruction));
         }
     }
 
@@ -79,7 +83,7 @@ public class InstructionFragment extends SimpleFragment {
             case REACTION:
                 getMainActivity().toReactionTest();
                 break;
-            case ATTENTION_VOLUME:
+            case ATTENTION_DISTRIBUTION:
                 getMainActivity().toAttentionVolumeTest();
                 break;
             case COMPLEX_MOTOR_REACTION:

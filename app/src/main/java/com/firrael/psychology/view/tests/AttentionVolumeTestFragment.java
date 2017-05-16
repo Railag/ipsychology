@@ -67,7 +67,7 @@ public class AttentionVolumeTestFragment extends BaseFragment<AttentionVolumeTes
 
     @Override
     protected String getTitle() {
-        return getString(R.string.attentionVolumeTestTitle);
+        return getString(R.string.attentionDistributionTestTitle);
     }
 
     @Override
@@ -171,7 +171,6 @@ public class AttentionVolumeTestFragment extends BaseFragment<AttentionVolumeTes
             toast(result.error);
             return;
         }
-        toast("success");
 
 
         Bundle args = new Bundle();

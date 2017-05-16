@@ -2,39 +2,132 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/infoButton"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:text="@string/info" />
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/appTitle"
+        android:textColor="@color/white"
+        android:textSize="22sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="50dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/infoButton"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="52dp"
+            android:background="@color/purple">
+
+            <Button
+                android:id="@+id/infoButton2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:padding="8dp"
+                android:src="@drawable/menu1" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/statisticsButton"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="52dp"
+            android:background="@color/purple">
+
+            <Button
+                android:id="@+id/statisticsButton2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:padding="8dp"
+                android:src="@drawable/menu3" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/settingsButton"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="52dp"
+            android:background="@color/purple">
+
+            <Button
+                android:id="@+id/settingsButton2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:padding="8dp"
+                android:src="@drawable/menu2" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
 
     <Button
-        android:id="@+id/testsButton"
+        android:id="@+id/reaction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/testing" />
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_button"
+        android:padding="10dp"
+        android:text="@string/reactionTitle"
+        android:textColor="@color/white" />
 
     <Button
-        android:id="@+id/statisticsButton"
+        android:id="@+id/distribution"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/statistics" />
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_button"
+        android:padding="10dp"
+        android:text="@string/attentionDistributionTestTitle"
+        android:textColor="@color/white" />
 
     <Button
-        android:id="@+id/settingsButton"
+        android:id="@+id/complex"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/settings" />
-
-    <Button
-        android:id="@+id/logoutButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="@string/exit" />
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_button"
+        android:padding="10dp"
+        android:text="@string/complexMotorReactionTestTitle"
+        android:textColor="@color/white" />
 
 
 </LinearLayout>

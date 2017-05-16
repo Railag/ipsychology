@@ -154,7 +154,6 @@ public class ComplexMotorReactionTestFragment extends BaseFragment<ComplexMotorR
             toast(result.error);
             return;
         }
-        toast("success");
 
         Bundle args = new Bundle();
         args.putInt(ComplexMotorReactionResultsFragment.WINS, wins);

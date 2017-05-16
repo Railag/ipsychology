@@ -3,35 +3,40 @@
     android:id="@+id/whiteTestBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/darker_gray">
+    android:background="@color/purple"
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/whiteTestText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/reactionWhiteText"
-        android:textColor="@android:color/white"
-        android:padding="5dp" />
+        android:visibility="visible" />
 
     <LinearLayout
         android:id="@+id/reactNumberLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/whiteTestText"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        android:visibility="gone">
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/currentReactNumber" />
+            android:text="@string/currentReactNumber"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/current"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp" />
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:text="10"/>
 
     </LinearLayout>
 

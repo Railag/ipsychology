@@ -7,19 +7,19 @@
     <string name="password">Пароль</string>
     <string name="login_email">Email</string>
     <string name="create_account">Создать аккаунт</string>
-    <string name="ageTitle">Возраст</string>
-    <string name="nameTitle">Имя</string>
+    <string name="ageTitle">Регистрация</string>
+    <string name="nameTitle">Регистрация</string>
     <string name="nameHint">Введите имя</string>
     <string name="passwordHint">Введите пароль</string>
     <string name="next">Далее</string>
     <string name="ageHint">Введите возраст</string>
     <string name="landingTitle">Тесты</string>
     <string name="reactionWhiteText">Нажми на белый, когда он появится на экране</string>
-    <string name="timeTitle">Время</string>
+    <string name="timeTitle">Регистрация</string>
     <string name="timeHint">Введите время</string>
 
     <string name="reactionTitle">Скорость реакции</string>
-    <string name="attentionVolumeTestTitle">Объем внимания</string>
+    <string name="attentionDistributionTestTitle">Распределение внимания</string>
     <string name="complexMotorReactionTestTitle">Сложная двигательная реакция</string>
 
     <string name="resultsTitle">Результаты</string>
@@ -34,9 +34,13 @@
     <string name="instruction">Инструкция</string>
     <string name="start">Начать</string>
 
-    <string name="instruction_reaction"> В этом тесте нужно как можно быстрее нажать на экран при появлении белого цвета. Тест проводится 10 раз, и в конце определяется среднее значение реакции. </string>
+    <string name="instruction_reaction"><![CDATA[Как только появится белый экран - нажмите на него. <br> <br>
+
+    Попытка дается 10 раз, после чего определяется среднее значение. ]]></string>
     <string name="instruction_attention_volume"> Нажмите на кнопку, когда на экране появятся две одинаковые фигуры. </string>
-    <string name="instruction_complex_motor_reaction">Круг в центре постоянно меняет цвет. Нужно нажать зеленую кнопку, если круг зеленого цвета. Красную кнопку, если красного. И ничего не нажимать, если серого или желтого.</string>
+    <string name="instruction_complex_motor_reaction"><![CDATA[Если экран загорается <font color="green">зеленым</font> - нажмите <font color="green">зеленую</font> кнопку.<br><br>
+    Если <font color="red">красным</font> - <font color="red">красную</font>.<br><br>
+    Если <font color="yellow">желтым</font> - <font color="yellow">ничего</font> нажимать не нужно.]]></string>
     <string name="landingScreenTitle">Стартовая страница</string>
     <string name="info">Профиль</string>
     <string name="testing">Тестирование</string>
@@ -53,4 +57,7 @@
     <string name="hard">Продвинутый</string>
     <string name="settings_level">Уровень сложности:</string>
     <string name="winsCount">Количество правильных</string>
+    <string name="appTitle">Система определения психофизиологического состояния оператора ПЭВМ</string>
+    <string name="loginText">Вход в систему</string>
+    <string name="register">Регистрация</string>
 </resources>

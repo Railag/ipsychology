@@ -30,6 +30,7 @@ public class SplashFragment extends BaseFragment<SplashPresenter> {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getMainActivity().hideToolbar();
         startLoading();
 
         if (savedInstanceState == null) {
@@ -44,7 +45,7 @@ public class SplashFragment extends BaseFragment<SplashPresenter> {
                 Handler handler = new Handler();
                 handler.postDelayed(() -> {
                     stopLoading();
-                    getMainActivity().toLogin();
+                    getMainActivity().toStart();
                 }, 3000);
             }
         }
@@ -67,18 +68,16 @@ public class SplashFragment extends BaseFragment<SplashPresenter> {
             return;
         }
         if (result.invalid()) {
-            getMainActivity().toLogin();
+            getMainActivity().toStart();
             return;
         }
-        toast("success login");
         User.save(result, getActivity());
-        //getMainActivity().updateNavigationMenu();
         getMainActivity().toLanding();
     }
 
     public void onError(Throwable error) {
         error.printStackTrace();
         stopLoading();
-        getMainActivity().toLogin();
+        getMainActivity().toStart();
     }
 }

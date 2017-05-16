@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/white"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingLeft="15dp"
@@ -14,12 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/timeHint"
-        android:inputType="textAutoComplete" />
-
-    <Button
-        android:id="@+id/nextButton"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:text="@string/next" />
+        android:imeOptions="actionDone"
+        android:inputType="numberDecimal" />
 
 </LinearLayout>

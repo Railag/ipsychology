@@ -1,17 +1,17 @@
 package com.firrael.psychology.view;
 
 import android.os.Bundle;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
 import com.firrael.psychology.R;
-import com.firrael.psychology.Utils;
 import com.firrael.psychology.model.User;
 import com.firrael.psychology.model.UserResult;
 import com.firrael.psychology.presenter.LoginPresenter;
 import com.firrael.psychology.view.base.BaseFragment;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import nucleus.factory.RequiresPresenter;
 
 /**
@@ -44,16 +44,21 @@ public class LoginFragment extends BaseFragment<LoginPresenter> {
         return R.layout.fragment_login;
     }
 
-    @OnClick(R.id.loginButton)
-    public void login() {
-        Utils.hideKeyboard(getActivity());
-        startLoading();
-        getPresenter().request(loginField.getText().toString(), passwordField.getText().toString());
-    }
+    @Override
+    protected void initView(View v) {
+        getMainActivity().showToolbar();
+        getMainActivity().toggleArrow(true);
 
-    @OnClick(R.id.createAccountButton)
-    public void createAccount() {
-        getMainActivity().toNameScreen();
+        passwordField.setOnEditorActionListener((textView, actionId, keyEvent) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                getPresenter().request(loginField.getText().toString(), passwordField.getText().toString());
+                startLoading();
+
+                return true;
+            } else {
+                return false;
+            }
+        });
     }
 
     public void onSuccess(UserResult result) {
@@ -66,9 +71,7 @@ public class LoginFragment extends BaseFragment<LoginPresenter> {
             toast(result.error);
             return;
         }
-        toast("success login");
         User.save(result, getActivity());
-    //    getMainActivity().updateNavigationMenu();
         getMainActivity().toLanding();
     }
 

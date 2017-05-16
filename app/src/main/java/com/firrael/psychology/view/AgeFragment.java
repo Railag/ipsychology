@@ -1,7 +1,11 @@
 package com.firrael.psychology.view;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.firrael.psychology.R;
 import com.firrael.psychology.Utils;
@@ -40,35 +44,23 @@ public class AgeFragment extends BaseFragment<AgePresenter> {
         return R.layout.fragment_age;
     }
 
-    @OnClick(R.id.nextButton)
-    public void login() {
-        Utils.hideKeyboard(getActivity());
-        //startLoading();
-        //getPresenter().request(nameField.getText().toString(), passwordField.getText().toString());
-        getPresenter().save(ageField.getText().toString());
-        getMainActivity().toTimeScreen();
-        // TODO on success save
-    }
+    @Override
+    protected void initView(View v) {
+        getMainActivity().showToolbar();
+        getMainActivity().toggleArrow(true);
 
-   /* public void onSuccess(UserResult result) {
-        stopLoading();
-        if (result == null) {
-            onError(new IllegalArgumentException());
-            return;
-        }
-        if (result.invalid()) {
-            toast(result.error);
-            return;
-        }
-        toast("success login");
-        User.save(result, getActivity());
-        getMainActivity().updateNavigationMenu();
-        getMainActivity().toTests();
-    }
+        ageField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_NEXT) {
+                    getPresenter().save(ageField.getText().toString());
+                    getMainActivity().toTimeScreen();
 
-    public void onError(Throwable error) {
-        error.printStackTrace();
-        stopLoading();
-        toast(error.getMessage());
-    }*/
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+    }
 }

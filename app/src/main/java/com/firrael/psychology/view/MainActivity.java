@@ -4,11 +4,15 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.Window;
+import android.widget.TextView;
 
 import com.firrael.psychology.App;
 import com.firrael.psychology.R;
+import com.firrael.psychology.model.StatisticsResult;
 import com.firrael.psychology.presenter.MainPresenter;
 import com.firrael.psychology.view.results.AttentionVolumeResultsFragment;
 import com.firrael.psychology.view.results.ComplexMotorReactionResultsFragment;
@@ -36,9 +40,40 @@ public class MainActivity extends NucleusAppCompatActivity<MainPresenter> {
     @BindView(R.id.loading)
     AVLoadingIndicatorView loading;
 
+    @BindView(R.id.toolbarTitle)
+    TextView toolbarTitle;
+
     private FirebaseAnalytics analytics;
 
     private Fragment currentFragment;
+
+    @Override
+    public void setTitle(CharSequence title) {
+        if (toolbarTitle != null) {
+            toolbarTitle.setText(title);
+        }
+    }
+
+    public void setStatusBarColor(int color) {
+        Window window = getWindow();
+
+        window.setStatusBarColor(getResources().getColor(color));
+    }
+
+    public void showToolbar() {
+        toolbar.setVisibility(View.VISIBLE);
+    }
+
+    public void hideToolbar() {
+        toolbar.setVisibility(View.GONE);
+    }
+
+    public void toggleArrow(boolean visible) {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(visible);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +82,13 @@ public class MainActivity extends NucleusAppCompatActivity<MainPresenter> {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        hideToolbar();
 
         App.setMainActivity(this);
+
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         analytics = FirebaseAnalytics.getInstance(this);
 
@@ -107,10 +147,6 @@ public class MainActivity extends NucleusAppCompatActivity<MainPresenter> {
         setFragment(LoginFragment.newInstance());
     }
 
-    public void toTests() {
-        setFragment(TestsFragment.newInstance());
-    }
-
     public void toNameScreen() {
         setFragment(NameFragment.newInstance());
     }
@@ -152,6 +188,10 @@ public class MainActivity extends NucleusAppCompatActivity<MainPresenter> {
         setFragment(ReactionTestFragment.newInstance());
     }
 
+    public void toStart() {
+        setFragment(StartFragment.newInstance());
+    }
+
     public void toComplexMotorReactionTest() {
         setFragment(ComplexMotorReactionTestFragment.newInstance());
     }
@@ -166,5 +206,17 @@ public class MainActivity extends NucleusAppCompatActivity<MainPresenter> {
 
     public void toComplexMotorReactionResults(Bundle args) {
         setFragment(ComplexMotorReactionResultsFragment.newInstance(args));
+    }
+
+    public void toStatisticsReaction(StatisticsResult results) {
+        setFragment(StatisticsReactionFragment.newInstance(results));
+    }
+
+    public void toStatisticsComplex(StatisticsResult results) {
+        setFragment(StatisticsComplexFragment.newInstance(results));
+    }
+
+    public void toStatisticsDistribution(StatisticsResult results) {
+        setFragment(StatisticsDistributionFragment.newInstance(results));
     }
 }

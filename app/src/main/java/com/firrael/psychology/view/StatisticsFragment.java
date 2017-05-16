@@ -1,22 +1,19 @@
 package com.firrael.psychology.view;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 
 import com.firrael.psychology.R;
 import com.firrael.psychology.model.StatisticsResult;
 import com.firrael.psychology.model.User;
 import com.firrael.psychology.presenter.StatisticsPresenter;
-import com.firrael.psychology.view.adapter.ComplexResultsAdapter;
-import com.firrael.psychology.view.adapter.ReactionResultsAdapter;
-import com.firrael.psychology.view.adapter.VolumeResultsAdapter;
 import com.firrael.psychology.view.base.BaseFragment;
 
 import java.util.Collections;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import nucleus.factory.RequiresPresenter;
 
 /**
@@ -25,12 +22,14 @@ import nucleus.factory.RequiresPresenter;
 @RequiresPresenter(StatisticsPresenter.class)
 public class StatisticsFragment extends BaseFragment<StatisticsPresenter> {
 
-    @BindView(R.id.reactionResultsList)
-    RecyclerView reactionResultsList;
-    @BindView(R.id.complexResultsList)
-    RecyclerView complexResultsList;
-    @BindView(R.id.volumeResultsList)
-    RecyclerView volumeResultsList;
+    @BindView(R.id.reaction)
+    Button reaction;
+    @BindView(R.id.distribution)
+    Button distribution;
+    @BindView(R.id.complex)
+    Button complex;
+
+    private StatisticsResult results;
 
     public static StatisticsFragment newInstance() {
 
@@ -53,16 +52,10 @@ public class StatisticsFragment extends BaseFragment<StatisticsPresenter> {
 
     @Override
     protected void initView(View v) {
+        getMainActivity().showToolbar();
+        getMainActivity().toggleArrow(true);
+
         startLoading();
-
-        LinearLayoutManager reactionManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        reactionResultsList.setLayoutManager(reactionManager);
-
-        LinearLayoutManager complexManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        complexResultsList.setLayoutManager(complexManager);
-
-        LinearLayoutManager volumeManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        volumeResultsList.setLayoutManager(volumeManager);
 
         fetchData();
     }
@@ -79,20 +72,6 @@ public class StatisticsFragment extends BaseFragment<StatisticsPresenter> {
         return result;
     }
 
-    private void fillUi(StatisticsResult result) {
-        VolumeResultsAdapter volumeAdapter = new VolumeResultsAdapter();
-        volumeAdapter.setAllResults(result.volumeResults);
-        volumeResultsList.setAdapter(volumeAdapter);
-
-        ComplexResultsAdapter complexAdapter = new ComplexResultsAdapter();
-        complexAdapter.setAllResults(result.complexResults);
-        complexResultsList.setAdapter(complexAdapter);
-
-        ReactionResultsAdapter reactionAdapter = new ReactionResultsAdapter();
-        reactionAdapter.setAllResults(result.reactionResults);
-        reactionResultsList.setAdapter(reactionAdapter);
-    }
-
     public void onSuccess(StatisticsResult result) {
         stopLoading();
 
@@ -105,12 +84,30 @@ public class StatisticsFragment extends BaseFragment<StatisticsPresenter> {
             return;
         }
 
-        StatisticsResult sortedResult = sortResults(result);
-        fillUi(sortedResult);
+        results = sortResults(result);
+
+        complex.setEnabled(true);
+        reaction.setEnabled(true);
+        distribution.setEnabled(true);
     }
 
     public void onError(Throwable throwable) {
         stopLoading();
         throwable.printStackTrace();
+    }
+
+    @OnClick({R.id.reaction, R.id.distribution, R.id.complex})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.reaction:
+                getMainActivity().toStatisticsReaction(results);
+                break;
+            case R.id.distribution:
+                getMainActivity().toStatisticsComplex(results);
+                break;
+            case R.id.complex:
+                getMainActivity().toStatisticsDistribution(results);
+                break;
+        }
     }
 }

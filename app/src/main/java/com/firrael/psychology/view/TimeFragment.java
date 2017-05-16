@@ -1,17 +1,17 @@
 package com.firrael.psychology.view;
 
 import android.os.Bundle;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
 import com.firrael.psychology.R;
-import com.firrael.psychology.Utils;
 import com.firrael.psychology.model.User;
 import com.firrael.psychology.model.UserResult;
 import com.firrael.psychology.presenter.TimePresenter;
 import com.firrael.psychology.view.base.BaseFragment;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import nucleus.factory.RequiresPresenter;
 
 /**
@@ -42,14 +42,24 @@ public class TimeFragment extends BaseFragment<TimePresenter> {
         return R.layout.fragment_time;
     }
 
-    @OnClick(R.id.nextButton)
-    public void login() {
-        Utils.hideKeyboard(getActivity());
-        getPresenter().save(timeField.getText().toString());
+    @Override
+    protected void initView(View v) {
+        getMainActivity().showToolbar();
+        getMainActivity().toggleArrow(true);
 
-        startLoading();
-        User user = User.get(getActivity());
-        getPresenter().request(user.getLogin(), user.getPassword(), user.getEmail(), user.getAge(), user.getTime());
+        timeField.setOnEditorActionListener((textView, i, keyEvent) -> {
+            if (i == EditorInfo.IME_ACTION_DONE) {
+                getPresenter().save(timeField.getText().toString());
+
+                startLoading();
+                User user = User.get(getActivity());
+                getPresenter().request(user.getLogin(), user.getPassword(), user.getEmail(), user.getAge(), user.getTime());
+
+                return true;
+            } else {
+                return false;
+            }
+        });
     }
 
     public void onSuccess(UserResult result) {
@@ -62,9 +72,7 @@ public class TimeFragment extends BaseFragment<TimePresenter> {
             toast(result.error);
             return;
         }
-        toast("success account creation");
         User.save(result, getActivity());
-        //getMainActivity().updateNavigationMenu();
         getMainActivity().toLanding();
     }
 

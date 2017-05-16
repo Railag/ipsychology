@@ -9,7 +9,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="@string/settings_level" />
+        android:text="@string/settings_level"
+        android:textColor="@color/purple"
+        android:textSize="22sp" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -39,14 +41,27 @@
 
     <Button
         android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
-        android:paddingBottom="5dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="5dp"
-        android:text="@string/save2" />
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_button"
+        android:padding="10dp"
+        android:text="@string/save2"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="160dp"
+        android:background="@drawable/round_button"
+        android:padding="10dp"
+        android:text="@string/exit"
+        android:textColor="@color/white" />
+
 
 </LinearLayout>

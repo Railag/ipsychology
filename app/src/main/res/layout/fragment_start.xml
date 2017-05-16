@@ -1,51 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
-    android:orientation="vertical"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp">
+    android:background="@drawable/background">
 
-    <Button
-        android:id="@+id/reaction"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/appTitle"
+        android:textColor="@color/white"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_marginEnd="50dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/round_button"
-        android:enabled="false"
         android:padding="10dp"
-        android:text="@string/reactionTitle"
+        android:text="@string/register"
         android:textColor="@color/white" />
 
     <Button
-        android:id="@+id/distribution"
+        android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/registerButton"
         android:layout_marginEnd="50dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/round_button"
-        android:enabled="false"
         android:padding="10dp"
-        android:text="@string/attentionDistributionTestTitle"
+        android:text="@string/loginText"
         android:textColor="@color/white" />
 
-
-    <Button
-        android:id="@+id/complex"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/round_button"
-        android:enabled="false"
-        android:padding="10dp"
-        android:text="@string/complexMotorReactionTestTitle"
-        android:textColor="@color/white" />
-
-
-</LinearLayout>
+</RelativeLayout>

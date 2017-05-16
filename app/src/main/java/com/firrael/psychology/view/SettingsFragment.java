@@ -8,6 +8,7 @@ import android.widget.RadioGroup;
 import com.firrael.psychology.App;
 import com.firrael.psychology.R;
 import com.firrael.psychology.model.Difficulty;
+import com.firrael.psychology.model.User;
 import com.firrael.psychology.view.base.SimpleFragment;
 
 import butterknife.BindView;
@@ -54,6 +55,9 @@ public class SettingsFragment extends SimpleFragment {
     @Override
     protected void initView(View v) {
 
+        getMainActivity().showToolbar();
+        getMainActivity().toggleArrow(true);
+
         current = App.diff(getActivity());
         switch (current) {
             case EASY:
@@ -92,5 +96,12 @@ public class SettingsFragment extends SimpleFragment {
 
         App.setDiff(getActivity(), current);
         getMainActivity().toLanding();
+    }
+
+
+    @OnClick(R.id.logoutButton)
+    public void logout() {
+        User.logout(getActivity());
+        getMainActivity().toSplash();
     }
 }
