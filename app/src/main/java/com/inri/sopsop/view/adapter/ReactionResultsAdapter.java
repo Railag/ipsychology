@@ -5,12 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.inri.sopsop.R;
-import com.inri.sopsop.model.StatisticsResult;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.inri.sopsop.R;
+import com.inri.sopsop.model.StatisticsResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,10 +50,16 @@ public class ReactionResultsAdapter extends RecyclerView.Adapter<ReactionResults
         }
 
         LineDataSet dataSet = new LineDataSet(lineEntries, "Время");
+        dataSet.setColor(R.color.purple);
 
         LineData lineData = new LineData(dataSet);
         holder.chart1.setData(lineData);
         holder.chart1.invalidate();
+
+        holder.chart1.animateX(2000);
+
+        Description description = holder.chart1.getDescription();
+        description.setEnabled(false);
     }
 
     @Override

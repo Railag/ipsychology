@@ -25,7 +25,7 @@
     <string name="resultsTitle">Результаты</string>
     <string name="errorsCount">Количество ошибок:</string>
     <string name="missesCount">Количество пропущенных:</string>
-    <string name="save">Save</string>
+    <string name="save">Сохранить</string>
     <string name="minReactTime">Минимальное время реакции:</string>
     <string name="maxReactTime">Максимальное время реакции:</string>
     <string name="averageReactTime">Среднее время реакции:</string>
