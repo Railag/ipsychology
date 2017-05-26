@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "461552008968",
-    "firebase_url": "https://psychology-5d692.firebaseio.com",
-    "project_id": "psychology-5d692",
-    "storage_bucket": "psychology-5d692.appspot.com"
+    "project_number": "208241306448",
+    "firebase_url": "https://sopsop-9219e.firebaseio.com",
+    "project_id": "sopsop-9219e",
+    "storage_bucket": "sopsop-9219e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:461552008968:android:09e70171db821d21",
+        "mobilesdk_app_id": "1:208241306448:android:f04a7cb003ad440f",
         "android_client_info": {
-          "package_name": "com.firrael.psychology"
+          "package_name": "com.inri.sopsop"
         }
       },
       "oauth_client": [
         {
-          "client_id": "461552008968-vg18f2rv0da0msl1o2d1r02v8i408cbl.apps.googleusercontent.com",
+          "client_id": "208241306448-3f3e08tdttf6q8v8mqrhhkm51ijotqhv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDvDG8fvkT5CeuZQbm1XohHHHy-APEArSM"
+          "current_key": "AIzaSyDwkujdwMlWs9GniZYmQDe5LhQo6-AOeio"
         }
       ],
       "services": {
