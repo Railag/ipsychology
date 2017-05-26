@@ -12,6 +12,13 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [HOCKEYAPP_APP_ID: "dfddbf16b97e4769a3e460ef052a0912"]
+
+        def env = System.getenv()
+        versionName "1." + env['BUILD_NUMBER']
+    }
+    lintOptions {
+        abortOnError false
     }
     buildTypes {
         release {
@@ -51,6 +58,7 @@ dependencies {
     compile 'com.google.firebase:firebase-messaging:9.0.2'
     compile 'com.google.firebase:firebase-crash:9.0.2'
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.1'
+    compile 'net.hockeyapp.android:HockeySDK:4.1.4'
 
     apply plugin: 'com.google.gms.google-services'
 }
