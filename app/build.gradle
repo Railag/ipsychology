@@ -12,7 +12,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        manifestPlaceholders = [HOCKEYAPP_APP_ID: "dfddbf16b97e4769a3e460ef052a0912"]
+        manifestPlaceholders = [HOCKEYAPP_APP_ID: "e691a0a4d7714d928a169230b4722aa5"]
 
         def env = System.getenv()
         versionName "1." + env['BUILD_NUMBER']
