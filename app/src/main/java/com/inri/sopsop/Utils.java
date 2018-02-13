@@ -6,12 +6,17 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.pdf.PdfDocument;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Environment;
 import android.print.PrintAttributes;
 import android.print.pdf.PrintedPdfDocument;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -144,5 +149,86 @@ public class Utils {
             return true;
         }
         return false;
+    }
+
+    private final static String SENSOR_TAG = "Sensor";
+    private final static float THRESHOLD_MAX = 7.0f;
+    private final static float THRESHOLD_MIN = 1.0f;
+    public static SensorEventListener registerSensor(Context context, AccelerometerListener listener) {
+        if (context == null || listener == null) {
+            return null;
+        }
+
+        SensorManager sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+        SensorEventListener sensorEventListener = new SensorEventListener() {
+            boolean sensorLock;
+
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                // In this example, alpha is calculated as t / (t + dT),
+                // where t is the low-pass filter's time-constant and
+                // dT is the event delivery rate.
+
+                final float alpha = 0.8f;
+
+                float[] gravity = new float[3];
+
+                // Isolate the force of gravity with the low-pass filter.
+                gravity[0] = alpha * gravity[0] + (1 - alpha) * event.values[0];
+                gravity[1] = alpha * gravity[1] + (1 - alpha) * event.values[1];
+                gravity[2] = alpha * gravity[2] + (1 - alpha) * event.values[2];
+
+                float[] linear_acceleration = new float[3];
+
+                // Remove the gravity contribution with the high-pass filter.
+                linear_acceleration[0] = event.values[0] - gravity[0];
+                linear_acceleration[1] = event.values[1] - gravity[1];
+                linear_acceleration[2] = event.values[2] - gravity[2];
+
+                float currentX = linear_acceleration[0];
+
+                if (currentX < THRESHOLD_MIN && currentX > -THRESHOLD_MIN) {
+                    sensorLock = false;
+                }
+
+                if (sensorLock) {
+                    return;
+                }
+
+                if (currentX > THRESHOLD_MAX) {
+                    sensorLock = true;
+                    Log.i(SENSOR_TAG, "onLeft");
+                    listener.onLeft();
+                } else if (currentX < -THRESHOLD_MAX) {
+                    sensorLock = true;
+                    Log.i(SENSOR_TAG, "onRight");
+                    listener.onRight();
+                }
+
+                //    float delta = Math.abs(previousX - currentX);
+
+                //Log.i(TAG, "x: " + linear_acceleration[0] + " y: " + linear_acceleration[1] + " z: " + linear_acceleration[2]);
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            }
+        };
+
+        sensorManager.registerListener(sensorEventListener, sensor, SensorManager.SENSOR_DELAY_UI);
+
+        return sensorEventListener;
+    }
+
+    public static void unregisterSensor(Context context, SensorEventListener listener) {
+        if (context == null || listener == null) {
+            return;
+        }
+
+        SensorManager sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+
+        sensorManager.unregisterListener(listener);
     }
 }
